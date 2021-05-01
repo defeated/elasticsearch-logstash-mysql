@@ -18,10 +18,25 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
-volumes:
+    volumes:
       - "es-data:/usr/share/elasticsearch/data/"
     environment:
       - "discovery.type=single-node"
 
+  logstash:
+    image: docker.elastic.co/logstash/logstash-oss:7.10.2
+    ports:
+      - "9600:9600"
+    volumes:
+      - "ls-data:/usr/share/logstash/data/"
+      - "./logstash/pipeline/:/usr/share/logstash/pipeline/"
+      - "./logstash/etc/mysql-connector-java-8.0.24.jar:/etc/mysql-connector-java-8.0.24.jar"
+    command: bash -c "bin/logstash-plugin install logstash-integration-jdbc && logstash"
+    depends_on:
+      - mysql
+      - elasticsearch
+
+volumes:
   es-data:
   db-data:
+  ls-data:
