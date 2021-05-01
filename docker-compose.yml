@@ -13,5 +13,15 @@ services:
       MYSQL_ROOT_PASSWORD: "secret"
       MYSQL_DATABASE: "testing"
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+    ports:
+      - "9200:9200"
+      - "9300:9300"
 volumes:
+      - "es-data:/usr/share/elasticsearch/data/"
+    environment:
+      - "discovery.type=single-node"
+
+  es-data:
   db-data:
