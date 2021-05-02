@@ -36,7 +36,10 @@ between dependencies starting and Logstash trying to interact with them.)
 
 ### Logstash
 
-Runs every 5 seconds, keeping track of the state of each run:
+We install the [logstash-integration-jdbc](https://github.com/logstash-plugins/logstash-integration-jdbc)
+plugin inside our container. 
+
+It is configured here to run every 5 seconds, keeping track of the state of each run:
 
 ```sql
 SELECT *
@@ -45,7 +48,7 @@ WHERE updated_at > :sql_last_value
   AND updated_at < NOW()
 ```
 
-and upserts the results in Elasticsearch.
+and then upsert the results in Elasticsearch.
 
 ---
 
