@@ -16,7 +16,7 @@ password `secret` on port `3600`.
 
 | Table | Column | Type |
 | ------ | ------ | ------ |
-| `foobars | `id` | `BIGINT` |
+| `foobars` | `id` | `BIGINT` |
 | | `baz` | `VARCHAR(255)` |
 | | `created_at` | `DATETIME` |
 | | `updated_at` | `DATETIME` |
